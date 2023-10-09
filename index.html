@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <h1>Dara</h1>
+    
+    <form class="bSize">
+        <label for="bSize">Select board size:</label> 
+        <select name="bSize" id="bSize">
+            <option value="6x5">6x5</option>
+            <option value="6x6">6x6</option>
+        </select>
+    </form>
+    <form action="opponent" class="opponent">
+        <label for="opponent">Select Opponent:</label>
+        <br>
+        <input type="radio" onclick="handleClick" name="opponent" id="player">
+        <label for="player">Player</label>
+        <br>
+        <input type="radio" name="opponent" id="computer">
+        <label for="computer">Computer</label>
+    </form>
+
+    <form action="fPlayer" class="fPlayer">
+        <label for="fPlayer">Select first player:</label>
+        <br>
+        <input type="radio" name="white" id="white">
+        <label for="player">White</label>
+        <br>
+        <input type="radio" name="black" id="black">
+        <label for="computer">Black</label>
+    </form>
+
+    <form action="AILevel" class="AILevel">
+        <label for="AILevel">Select AI level:</label>
+        <br>
+        <input type="radio" name="easy" id="easy">
+        <label for="player">Easy</label>
+        <br>
+        <input type="radio" name="medium" id="medium">
+        <label for="computer">Medium</label>
+        <br>
+        <input type="radio" name="hard" id="hard">
+        <label for="computer">Hard</label>
+    </form>
+    
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+
+    <script src="index.js"></script>
+</body>
+</html>
