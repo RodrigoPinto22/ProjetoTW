@@ -15,7 +15,6 @@ select{
     height: 25px;
 }
 
-
 .opponent input {
     margin-top: 10px;
 }
@@ -26,7 +25,16 @@ form{
     margin-left: 130px;
 }
 
-div{
-    display: flex;
-    flex-direction: row;
+button{
+    width: 50px;
+    height: 20px;
 }
+
+.board{
+    width: 500px;
+    height: 500px;
+    background-color: blue;
+    margin-top: 300px;
+    margin-left: 700px;
+}
+
