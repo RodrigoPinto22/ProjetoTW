@@ -11,7 +11,7 @@
     
     <form class="bSize">
         <label for="bSize">Select board size:</label> 
-        <select name="bSize" id="bSize">
+        <select onChange="getSize()" name="bSize" id="bSize">
             <option value="6x5">6x5</option>
             <option value="6x6">6x6</option>
         </select>
@@ -19,7 +19,7 @@
     <form action="opponent" class="opponent">
         <label for="opponent">Select Opponent:</label>
         <br>
-        <input type="radio" onclick="handleClick" name="opponent" id="player">
+        <input type="radio" name="opponent" id="player">
         <label for="player">Player</label>
         <br>
         <input type="radio" name="opponent" id="computer">
@@ -48,7 +48,10 @@
         <input type="radio" name="hard" id="hard">
         <label for="computer">Hard</label>
     </form>
+
+    <button class="teste" onclick="handleClick()">Click</button>
     
+    <div class="board"></div>
     
     <link rel="stylesheet" href="style.css">
 </head>
