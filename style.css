@@ -9,32 +9,55 @@ h1{
     text-align: center;
 }
 
+.login{
+    display: flex;
+    justify-content: end;
+    margin-right: 80px;    
+}
+
+.passLabel{
+    margin-left: 40px;
+}
+
 select{
     font-size: 20px;
     width: 70px;
     height: 25px;
 }
 
-.opponent input {
-    margin-top: 10px;
-}
-
 form{
-    float: left;
+    margin: auto;
+}
+
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     margin-top: 50px;
-    margin-left: 130px;
 }
 
-button{
-    width: 50px;
-    height: 20px;
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.board{
+.board {
     width: 500px;
     height: 500px;
+    margin-top: 50vh;
     background-color: blue;
-    margin-top: 300px;
-    margin-left: 700px;
 }
+
+button {
+    margin-top: 20px;
+    width:80px;
+    height: 30px;
+}
+
 
