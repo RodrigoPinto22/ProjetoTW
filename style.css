@@ -1,18 +1,14 @@
-html{
+*{
+    margin: 0%;
+    padding: 0%;
     font-family: sans-serif;
     font-size: 24px;
 }
 
-h1{
-    color: red;
-    font-size: 50px;
-    text-align: center;
-}
 
-.login{
-    display: flex;
-    justify-content: end;
-    margin-right: 80px;    
+.logo{
+    height: 150px;
+    width: 200px;
 }
 
 .passLabel{
@@ -25,16 +21,33 @@ select{
     height: 25px;
 }
 
+.loginDiv{
+    margin: auto;
+    background-color: #FFFFCC;
+    height: 150px;
+}
+
+.login{
+    display: flex;
+    justify-content: end;
+    margin-right: 80px;   
+}
+
+.login * {
+    margin-top: 40px;
+}
+
 form{
     margin: auto;
 }
 
-.options{
+.options {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Change to column */
     justify-content: center;
     margin-top: 50px;
 }
+
 
 .container {
     position: absolute;
@@ -48,9 +61,9 @@ form{
 }
 
 .board {
-    width: 500px;
-    height: 500px;
-    margin-top: 50vh;
+    width: 700px;
+    height: 700px;
+    margin-top: 20vh;
     background-color: blue;
 }
 
@@ -58,6 +71,13 @@ button {
     margin-top: 20px;
     width:80px;
     height: 30px;
+}
+
+.leftColumn{
+    width: 200px;
+    height: 1200px;
+    background-color: #FFFFCC;
+    float: left;
 }
 
 
