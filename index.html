@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="leftColumn">
+        <img src="https://www.whatdowedoallday.com/wp-content/uploads/2016/05/dara-blank-board-game.jpg" alt="" class="logo">
+    </div>
+    <div class="loginDiv">
+        <form class="login">
+            <label for="username">Username:</label>
+            <input type="text" title="asd" class="username">
+            <label for="password" class="passLabel">Password:</label>
+            <input type="password" class="password">
+        </form>
+    </div>
 
-    <h1>Dara</h1>
-
-    <form class="login">
-        <label for="username">username:</label>
-        <input type="text" title="asd" class="username">
-        <label for="password" class="passLabel">password:</label>
-        <input type="text" class="password">
-    </form>
     <div class="options">
         <form class="bSize">
             <label for="bSize">Select board size:</label> 
-            <select onChange="getSize()" name="bSize" id="bSize">
+            <select name="bSize" id="bSize" onchange="getSize()">
                 <option value="6x5">6x5</option>
                 <option value="6x6">6x6</option>
                 <option value="7x7">7x7</option>
@@ -35,24 +41,24 @@
         <form action="fPlayer" class="fPlayer">
             <label for="fPlayer">Select first player:</label>
             <br>
-            <input type="radio" name="white" id="white">
-            <label for="player">White</label>
+            <input type="radio" name="fPlayer" id="white">
+            <label for="white">White</label>
             <br>
-            <input type="radio" name="black" id="black">
-            <label for="computer">Black</label>
+            <input type="radio" name="fPlayer" id="black">
+            <label for="black">Black</label>
         </form>
 
         <form action="AILevel" class="AILevel">
             <label for="AILevel">Select AI level:</label>
             <br>
-            <input type="radio" name="easy" id="easy">
-            <label for="player">Easy</label>
+            <input type="radio" name="AILevel" id="easy">
+            <label for="easy">Easy</label>
             <br>
-            <input type="radio" name="medium" id="medium">
-            <label for="computer">Medium</label>
+            <input type="radio" name="AILevel" id="medium">
+            <label for="medium">Medium</label>
             <br>
-            <input type="radio" name="hard" id="hard">
-            <label for="computer">Hard</label>
+            <input type="radio" name="AILevel" id="hard">
+            <label for="hard">Hard</label>
         </form>
     </div>
     <div class="container">
@@ -60,13 +66,6 @@
         <button class="startGame" onclick="startGame()">Start</button>
     </div>
     
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-
-
     <script src="index.js"></script>
 </body>
 </html>
