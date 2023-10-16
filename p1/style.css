@@ -1,19 +1,21 @@
 *{
     margin: 0%;
+    border: 0%;
     padding: 0%;
-    font-family: sans-serif;
+    font-family:    "Didot", serif;
     font-size: 24px;
 }
 
 .leftColumn{
     width: 200px;
-    height: 100vh;
-    background-color: #FFFFCC;
+    height: 140vh;
+    background-image: linear-gradient(to bottom, #0cc0df
+    ,#ffde59);    
     float: left;
 }
 
 .logo{
-    height: 150px;
+    height: 200px;
     width: 200px;
 }
 
@@ -24,17 +26,30 @@
 }
 
 .info{
-    height: 200px;
-    width: 200px;
-    background-color: blue;
+    height: 60px;
+    width: 170px;
+    border-radius: 25px;
+
+    background-color: #f4ebdc;
     margin-top: 100px;
+    margin-left: 18px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+
 
 }
 
+
+
+
 .loginDiv{
     margin: auto;
-    background-color: #FFFFCC;
-    height: 150px;
+    background-image: linear-gradient(to right, #0cc0df
+    ,#ffde59);
+    height: 200px;
+
 }
 
 .login{
@@ -44,7 +59,7 @@
 }
 
 .login * {
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 form{
@@ -72,7 +87,7 @@ form{
     background-color: red;
     top:0;
     left:0;
-    margin-left: 300px;
+    margin-left: 5%;
     height: 200px;
     width: 400px;
 }
@@ -82,23 +97,58 @@ form{
     background-color: red;
     top:0;
     right:0;
-    margin-right: 300px;
+    margin-right: 5%;
     height: 200px;
     width: 400px;
 }
 
-
-
 .board {
     width: 700px;
     height: 700px;
-    background-color: black;
+    background-color: #fde592;
 }
 
 button {
     margin-top: 20px;
-    width:80px;
-    height: 30px;
+    background-image: linear-gradient(to right, #0cc0df
+    ,#ffde59);
+    width:200px;
+    height: 100px;
 }
 
+.about {
+    display: flex;
+    visibility: "visible";
+    align-items: center;
+    justify-content: center;
+    margin-left: 50%;
+    height: 500px;
+    width: 300px;
+    background-color: var(--globalBackgroundOpaque);
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.5);
+    margin: 0;
+    position: relative;
+}
 
+.painel-transitorio {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 20px;
+    color: white;
+    z-index: 999;
+}
+
+.fechar-painel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
