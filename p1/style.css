@@ -1,0 +1,104 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: sans-serif;
+    font-size: 24px;
+}
+
+.leftColumn{
+    width: 200px;
+    height: 100vh;
+    background-color: #FFFFCC;
+    float: left;
+}
+
+.logo{
+    height: 150px;
+    width: 200px;
+}
+
+#bSize{
+    font-size: 20px;
+    width: 70px;
+    height: 25px;
+}
+
+.info{
+    height: 200px;
+    width: 200px;
+    background-color: blue;
+    margin-top: 100px;
+
+}
+
+.loginDiv{
+    margin: auto;
+    background-color: #FFFFCC;
+    height: 150px;
+}
+
+.login{
+    display: flex;
+    justify-content: end;
+    margin-right: 80px;   
+}
+
+.login * {
+    margin-top: 40px;
+}
+
+form{
+    margin: auto;
+}
+
+.options {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10vh;
+    align-items: center;
+    position: relative;
+}
+
+.player1 {
+    position: absolute;
+    background-color: red;
+    top:0;
+    left:0;
+    margin-left: 300px;
+    height: 200px;
+    width: 400px;
+}
+
+.player2 {
+    position: absolute;
+    background-color: red;
+    top:0;
+    right:0;
+    margin-right: 300px;
+    height: 200px;
+    width: 400px;
+}
+
+
+
+.board {
+    width: 700px;
+    height: 700px;
+    background-color: black;
+}
+
+button {
+    margin-top: 20px;
+    width:80px;
+    height: 30px;
+}
+
+
