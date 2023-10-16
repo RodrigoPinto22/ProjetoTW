@@ -8,7 +8,12 @@
 </head>
 <body>
     <div class="leftColumn">
-        <img src="https://www.whatdowedoallday.com/wp-content/uploads/2016/05/dara-blank-board-game.jpg" alt="" class="logo">
+        <img src="4.png" alt="" class="logo">
+        <button class="info" value="1" id="whatIs" onclick="getInfo()">O que é</button>
+        <button class="info" value="2" id="howToPlay" onclick="getInfo()">Como jogar</button>
+        <button class="info" value="3" id="rules" onclick="getInfo()">Regras</button>
+        <button class="info"  id="classif" onclick="">Classificações</button>
+
     </div>
     <div class="loginDiv">
         <form class="login">
@@ -21,50 +26,56 @@
 
     <div class="options">
         <form class="bSize">
-            <label for="bSize">Select board size:</label> 
+            <label for="bSize">Escolher tamanho do tabuleiro:</label> 
             <select name="bSize" id="bSize" onchange="getSize()">
-                <option value="6x5">6x5</option>
+                <option value="6x5" selected="selected">6x5</option>
                 <option value="6x6">6x6</option>
                 <option value="7x7">7x7</option>
             </select>
         </form>
         <form action="opponent" class="opponent">
-            <label for="opponent">Select Opponent:</label>
+            <label for="opponent">Adversário:</label>
             <br>
             <input type="radio" name="opponent" id="player">
-            <label for="player">Player</label>
+            <label for="player">Jogador</label>
             <br>
             <input type="radio" name="opponent" id="computer">
-            <label for="computer">Computer</label>
+            <label for="computer">Computador</label>
         </form>
 
         <form action="fPlayer" class="fPlayer">
-            <label for="fPlayer">Select first player:</label>
+            <label for="fPlayer">Primeiro a jogar</label>
             <br>
             <input type="radio" name="fPlayer" id="white">
-            <label for="white">White</label>
+            <label for="white">Peças brancas</label>
             <br>
             <input type="radio" name="fPlayer" id="black">
-            <label for="black">Black</label>
+            <label for="black">Peças pretas</label>
         </form>
 
         <form action="AILevel" class="AILevel">
-            <label for="AILevel">Select AI level:</label>
+            <label for="AILevel">Escolher nível de dificuldade</label>
             <br>
             <input type="radio" name="AILevel" id="easy">
-            <label for="easy">Easy</label>
+            <label for="easy">Fácil</label>
             <br>
             <input type="radio" name="AILevel" id="medium">
-            <label for="medium">Medium</label>
+            <label for="medium">Médio</label>
             <br>
             <input type="radio" name="AILevel" id="hard">
-            <label for="hard">Hard</label>
+            <label for="hard">Difícil</label>
         </form>
     </div>
+
     <div class="container">
-        <table class="board" id="board"></table>
-        <button class="startGame" onclick="startGame()">Start</button>
+        <div class="player1">asd</div>
+
+        <table class="board" frame="box" rules="all" id="board"></table>
+
+        <div class="player2">asd</div>
+        <button class="forfeit" onclick="startGame()">Desistir</button>
     </div>
+
     
     <script src="index.js"></script>
 </body>
