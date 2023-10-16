@@ -23,14 +23,36 @@ function createBoard() {
 
             cell.style.width = `${500%width}px`;
             cell.style.height = `${500%height}px`;
-            cell.style.backgroundColor = (j + i) % 2 === 0 ? "white" : "black";
+            cell.style.border = "solid 1px";
             row.appendChild(cell);
         }
     }
 }
 
+function alerts() {
+    const options = document.querySelector(".options");
+    board.innerHTML = "";
+    const about = document.createElement("div")
+    about.style.height = "50px";
+    about.style.width = "50px";
 
+    options.append(about)
+}
 
 function startGame() {
     alert("teste")
 }
+
+const mostrarPainelBtn = document.getElementById('mostrarPainel');
+const painel = document.getElementById('painel');
+const fecharPainelBtn = document.getElementById('fecharPainel');
+
+// Função para mostrar o painel
+mostrarPainelBtn.addEventListener('click', function () {
+    painel.style.display = 'block';
+});
+
+// Função para fechar o painel
+fecharPainelBtn.addEventListener('click', function () {
+    painel.style.display = 'none';
+});
