@@ -8,10 +8,12 @@
 </head>
 <body>
     <div class="leftColumn">
-        <img src="https://www.whatdowedoallday.com/wp-content/uploads/2016/05/dara-blank-board-game.jpg" alt="" class="logo">
-        <div class="info" id="about"></div>
-        <div class="info" id="config"></div>
-        <div class="info" id="rules"></div>
+        <img src="1.png" alt="" class="logo">
+        <div class="info" id="about" onclick="alerts()">O que é</div>
+        <div class="info" id="howToPlay">Como jogar</div>
+        <div class="info" id="rules">Regras</div>
+        <div class="info" id="classif">Classificações</div>
+
     </div>
     <div class="loginDiv">
         <form class="login">
@@ -65,14 +67,19 @@
         </form>
     </div>
 
+    <button id="mostrarPainel">Mostrar Painel</button>
+    <div id="painel" class="painel-transitorio">
+        <span id="fecharPainel" class="fechar-painel" >asfasf</span>
+        <p>Este é um painel transitório!</p>
+    </div>
 
     <div class="container">
         <div class="player1">asd</div>
 
-        <table class="board" id="board"></table>
+        <table class="board" frame="box" rules="all" id="board"></table>
 
         <div class="player2">asd</div>
-        <button class="startGame" onclick="startGame()">Start</button>
+        <button class="forfeit" onclick="startGame()">Desistir</button>
     </div>
 
     
