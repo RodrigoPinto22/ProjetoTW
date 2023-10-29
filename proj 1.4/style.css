@@ -1,0 +1,222 @@
+*{
+    margin: 0%;
+    border: 0%;
+    padding: 0%;
+    font-family:"Didot", serif;
+    font-size: 24px;
+}
+
+.leftColumn{
+    width: 200px;
+    height: 140vh;
+    background-image: linear-gradient(to bottom, #0cc0df,#ffde59);    
+    float: left;
+}
+
+.logo{
+    height: 200px;
+    width: 200px;
+}
+
+#bSize{
+    font-size: 20px;
+    width: 70px;
+    height: 25px;
+}
+
+.info{
+    height: 90px;
+    width: 170px;
+    border-radius: 25px;
+    font-family: " &quot;YAE5FR-e5Tw 0&quot";
+    background-image: linear-gradient(to right, #0cc0df,#ffde59);
+    margin-top: 100px;
+    margin-left: 18px;
+    cursor: pointer;
+
+}
+
+.overlayContent{
+    display: flex;
+    
+    position: relative;
+    border: solid 1px black;
+    flex-direction: column;
+    background-size: 100% 100%;
+    height: 800px;
+    width: 800px;
+}
+
+.title{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.paragraph{
+    margin-top: 25px;
+    margin-left: 5px;
+    font-size: 28px;
+}
+
+.paragraph::first-letter {
+    margin-left: 20px;
+    
+}
+
+.listItem{
+    margin-top: 25px;
+    font-size: 28px;
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+.subListItem{
+    margin-top: 25px;
+    font-size: 28px;
+    margin-left: 30px;
+    list-style-type: none;
+}
+
+.msg{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 34px;
+}
+
+.scoreBoard{
+    background-image: linear-gradient(to right, #0cc0df,#ffde59);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-size: 100% 100%;
+    height: 800px;
+    width: 800px;
+}
+
+
+.closeButton {
+    position: absolute;
+    font-family:sans-serif ;
+    background-color: transparent;
+    top: 10px;
+    right: 10px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.classif{
+    background-color: red;
+}
+
+.loginDiv{
+    margin: auto;
+    background-image: linear-gradient(to right, #0cc0df,#ffde59);
+    height: 200px;
+}
+
+.login{
+    display: flex;
+    justify-content: end;
+    margin-right: 30px;   
+}
+
+.login * {
+    margin-top: 130px;
+}
+
+form{
+    margin: auto;
+}
+
+.options {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.custSize{
+    width: 40px;
+    height: 25px;
+}
+
+.startGame{
+    margin-top: 20px;
+    background-image:linear-gradient(to right,#ffde59,#ff914d);;
+    width:200px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-right: 50px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+    align-items: center;
+    position: relative;
+}
+
+.gameOptions{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.playerContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vh;
+    text-align: center;
+    height: 10vh;
+    width: 8vh;
+    margin-bottom: 20px;
+}
+
+
+.messages{
+    height: 15vh;
+    width: 40vh;
+    font-family: "Cascadia mono", monospace;
+}
+
+.board {
+    display: grid;
+    width: 700px;
+    height: 700px;
+    background-color: #fde592;
+}
+
+.cell {
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+}
+
+.forfeit {
+    margin-top: 20px;
+    background-image: linear-gradient(to right, #0cc0df,#ffde59);
+    width:200px;
+    height: 100px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
