@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="leftColumn">
+        <img src="4.png" alt="" class="logo">
+        <button class="info" value="1" id="whatIs" onclick="getInfo()">O que é</button>
+        <button class="info" value="2" id="howToPlay" onclick="getInfo()">Como jogar</button>
+        <button class="info" value="3" id="rules" onclick="getInfo()">Regras</button>
+        <button class="info"  id="classif" onclick="getScorboard()">Classificações</button>
+
+    </div>
+    <div class="loginDiv">
+        <form class="login">
+            <label for="username">Username:</label>
+            <input type="text" title="asd" class="username">
+            <label for="password" class="passLabel">Password:</label>
+            <input type="password" class="password">
+        </form>
+    </div>
+    <div class="options">
+        <form class="bSize">
+            <label for="bSize">Escolher tamanho do tabuleiro:</label> 
+            <select name="bSize" id="bSize" onchange="getSize()">
+                <option value="6x5" selected="selected">6x5</option>
+                <option value="6x6">6x6</option>
+                <option value="7x7">7x7</option>
+            </select>
+        </form>
+        <form class="bSize">
+            <label for="bSize">Escolher tamanho personalizado:</label> 
+            <input type="number" id="width" class="custSize">
+            <label for="">x</label>
+            <input type="number" id="height" class="custSize">
+            <button class="custButton" onclick="getCustomSize()">Confirmar</button>
+        </form>
+        <form action="opponent" class="opponent">
+            <label for="opponent">Adversário:</label>
+            <br>
+            <input type="radio" name="opponent" id="player">
+            <label for="player">Jogador</label>
+            <br>
+            <input type="radio" name="opponent" id="computer">
+            <label for="computer">Computador</label>
+        </form>
+
+        <form action="fPlayer" class="fPlayer">
+            <label for="fPlayer">Primeiro a jogar</label>
+            <br>
+            <input type="radio" name="fPlayer" id="white">
+            <label for="white">Peças brancas</label>
+            <br>
+            <input type="radio" name="fPlayer" id="black">
+            <label for="black">Peças pretas</label>
+        </form>
+
+        <form action="AILevel" class="AILevel">
+            <label for="AILevel">Escolher nível de dificuldade</label>
+            <br>
+            <input type="radio" name="AILevel" id="easy">
+            <label for="easy">Fácil</label>
+            <br>
+            <input type="radio" name="AILevel" id="medium">
+            <label for="medium">Médio</label>
+            <br>
+            <input type="radio" name="AILevel" id="hard">
+            <label for="hard">Difícil</label>
+        </form>
+    </div>
+    <div class="container">
+        <div class="playerContainer" id="playerContainer1">
+            <div class="messages" id="messagesP1">O jogo ainda não começou</div>
+
+        </div>
+        <div class="board" frame="box" rules="all" id="board"></div>
+
+        
+        <div class="gameOptions">
+            <button class="startGame" onclick="startGame()">Começar partida</button>
+
+            <button class="forfeit" onclick="endGame()">Desistir</button>
+    
+        </div>
+        </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+</body>
+</html>
