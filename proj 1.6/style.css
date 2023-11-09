@@ -1,0 +1,305 @@
+* {
+    margin: 0%;
+    border: 0%;
+    padding: 0%;
+    font-family: "Didot", serif;
+
+}
+
+.leftColumn {
+    width: 200px;
+    height: 110vh;
+    background-image: linear-gradient(to bottom, #0cc0df, #ffde59);
+    float: left;
+    font-size: 30px;
+}
+
+.logo {
+    height: 170px;
+    width: 200px;
+}
+
+.info {
+    height: 90px;
+    width: 170px;
+    border-radius: 25px;
+    font-family: " &quot;YAE5FR-e5Tw 0&quot";
+    font-size: 24px;
+    background-image: linear-gradient(to right, #0cc0df, #ffde59);
+    margin-top: 100px;
+    margin-left: 18px;
+    cursor: pointer;
+}
+
+.overlayContent {
+    display: flex;
+    position: relative;
+    border: solid 1px black;
+    flex-direction: column;
+    background-size: 100% 100%;
+    height: 800px;
+    width: 800px;
+}
+
+.title {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.paragraph {
+    margin-top: 25px;
+    margin-left: 5px;
+    font-size: 28px;
+}
+
+.paragraph::first-letter {
+    margin-left: 20px;
+
+}
+
+.listItem {
+    margin-top: 25px;
+    font-size: 28px;
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+.subListItem {
+    margin-top: 25px;
+    font-size: 28px;
+    margin-left: 30px;
+    list-style-type: none;
+}
+
+.msg {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 34px;
+}
+
+.scoreBoard {
+    background-image: linear-gradient(to right, #0cc0df, #ffde59);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-size: 100% 100%;
+    height: 800px;
+    width: 800px;
+}
+
+
+.closeButton {
+    position: absolute;
+    font-family: sans-serif;
+    background-color: transparent;
+    top: 10px;
+    right: 10px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.classif {
+    background-color: red;
+}
+
+.loginDiv {
+    margin: auto;
+    background-image: linear-gradient(to right, #0cc0df, #ffde59);
+    height: 170px;
+    font-size: 24px;
+}
+
+.login {
+    display: flex;
+    justify-content: end;
+    margin-right: 30px;
+}
+
+.login * {
+    margin-top: 100px;
+}
+
+
+.optionsDiv {
+    display: flex;
+    justify-content: center;
+}
+
+#options {
+    background-image: linear-gradient(to right, #0cc0df, #ffde59);
+    line-height: 70px;
+    cursor: pointer;
+    margin-top: 50px;
+    height: 100px;
+    width: 300px;
+    font-size: 32px;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+    width: 800px;
+
+}
+
+.optionsContainer div {
+    align-items: center;
+    margin-left: 5vh;
+    margin-top: 3vh;
+    height: 50px;
+    width: 800px;
+    font-size: 30px;
+}
+
+#fPlayer {
+    margin-top: 5vh;
+}
+
+#AILevel {
+    margin-top: 9vh;
+}
+
+#bSize {
+    width: 70px;
+    height: 40px;
+    font-size: 24px;
+    margin-left: 0vh;
+}
+
+.bSize input {
+    width: 60px;
+    height: 35px;
+    font-size: 30px;
+}
+
+.bSize button {
+    margin-left: 1vh;
+    width: 90px;
+    height: 36px;
+    font-size: 20px;
+}
+
+.startGame {
+    margin-top: 20px;
+    background-image: linear-gradient(to right, #ffde59, #ff914d);
+    
+    width: 200px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-right: 50px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 38px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+    position: relative;
+}
+
+.board {
+    display: grid;
+    width: 700px;
+    height: 700px;
+    background-color: #fde592;
+}
+
+#p1Container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    height: 500px;
+    width: 500px;
+    background-color: #fde592;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: solid 1px black;
+}
+
+#p2Container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    margin-top: 10px;
+    height: 500px;
+    width: 500px;
+    background-color: #fde592;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: solid 1px black;
+}
+
+.piece {
+    height: 60px;
+    width: 60px;
+    margin-top: 10px;
+    margin-left: 10px; 
+    border: solid 1px black;
+    border-radius: 50%;
+    
+    cursor: pointer;
+}
+
+.gameOptions {
+    display: flex;
+    flex-direction: row;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 5vh;
+    width: 40vh;
+    font-family: "Cascadia mono", monospace;
+    font-size: 30px;
+}
+
+.cell {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0%;
+    text-align: center;
+}
+
+.forfeit {
+    margin-top: 20px;
+    background-image: linear-gradient(to right, #cdffd8, #94b9ff);
+    width: 200px;
+    height: 100px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 40px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
