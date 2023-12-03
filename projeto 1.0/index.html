@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="leftColumn">
+        <img src="img1.png" alt="" class="logo">
+        <button class="info" value="1" id="whatIs" onclick="getInfo()">O que é</button>
+        <button class="info" value="2" id="howToPlay" onclick="getInfo()">Como jogar</button>
+        <button class="info" value="3" id="rules" onclick="getInfo()">Regras</button>
+        <button class="info"  id="classif" onclick="getScorboard()">Classificações</button>
+
+    </div>
+    <div class="loginDiv">
+        <form class="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" title="asd" class="">
+            
+            <label for="password" class="passLabel">Password:</label>
+            <input type="password" id="password" class="password">
+            
+            <!-- Pass values as parameters when calling registerPlayer -->
+            <button id="loginBtn" onclick="registerPlayer()">Login</button>
+        </form>
+    </div>
+    <div class="optionsDiv">
+        <button id="options" onclick="showOptions()">
+            Selecionar Opções
+        </button>
+    </div>
+    
+    <div class="container">
+        <h2  id="messages">O jogo ainda não começou</h2>
+        <div id="p1Container">
+        </div>
+        <div frame="box" rules="all" id="board">
+            <div class="cell" id=1 value = 1></div>
+            <div class="cell" id=2></div>
+            <div class="cell" id=3></div>
+            <div class="cell" id=4></div>
+            <div class="cell" id=5></div>
+            <div class="cell" id=6></div>
+            <div class="cell" id=7></div>
+            <div class="cell" id=8></div>
+            <div class="cell" id=9></div>
+            <div class="cell" id=10></div>
+            <div class="cell" id=11></div>
+            <div class="cell" id=12></div>
+            <div class="cell" id=13></div>
+            <div class="cell" id=14></div>
+            <div class="cell" id=15></div>
+            <div class="cell" id=16></div>
+            <div class="cell" id=17></div>
+            <div class="cell" id=18></div>
+            <div class="cell" id=19></div>
+            <div class="cell" id=20></div>
+            <div class="cell" id=21></div>
+            <div class="cell" id=22></div>
+            <div class="cell" id=23></div>
+            <div class="cell" id=24></div>
+            <div class="cell" id=25></div>
+            <div class="cell" id=26></div>
+            <div class="cell" id=27></div>
+            <div class="cell" id=28></div>
+            <div class="cell" id=29></div>
+            <div class="cell" id=30></div>
+        </div>
+        
+        <div id="p2Container">
+            
+        </div>
+        <div class="gameOptions">
+            <button class="startGame" onclick="startGame()">Começar a partida</button>
+            <button class="forfeit" onclick="endGame()">Desistir</button>
+        </div>
+    </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+</body>
+</html>
