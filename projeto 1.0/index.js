@@ -1,51 +1,47 @@
-let rows, cols;
 let nrows = 6;
 let ncols = 5;
 let counter = 0;
 let currentPlayer = "white";
 let opponent = 0; // 0-computador || 1-jogador
 let selectedPiece = null;
-let whitePieces = []
-let blackPieces = []
-let emptyCells = []
-for (i = 1; i < 31; i++) {
-    emptyCells.push(i)
+let whitePieces = [];
+let blackPieces = [];
+let emptyCells = [];
+for (let i = 1; i <= nrows * ncols; i++) {
+    emptyCells.push(i);
 }
 
 function changeSize() {
-    const board = document.getElementById("board")
-    board.innerHTML = ""
-    try{
+    const board = document.getElementById("board");
+    board.innerHTML = "";
+    try {
         const boardSize = document.getElementById("bSize").value;
-        console.log(boardSize)
+        console.log(boardSize);
         const dimensions = boardSize.split("x");
-        rows = parseInt(dimensions[0], 10);
-        cols = parseInt(dimensions[1], 10);
-        board.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-        board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-        for (let i = 1; i <= rows * cols; i++) {
+        nrows = parseInt(dimensions[0], 10);
+        ncols = parseInt(dimensions[1], 10);
+        board.style.gridTemplateRows = `repeat(${nrows}, 1fr)`;
+        board.style.gridTemplateColumns = `repeat(${ncols}, 1fr)`;
+        for (let i = 1; i <= nrows * ncols; i++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.id = i;
             board.appendChild(cell);
         }
+    } catch (error) {
+        console.error("Error changing board size: ", error);
     }
-    catch(error) {
-        board.style.gridTemplateRows = `repeat(6, 1fr)`;
-        board.style.gridTemplateColumns = `repeat(5, 1fr)`;
-    }   
 }
 
 function selectOpponent() {
-    const opponent = document.querySelector("input[name='opponent']:checked").value;
-    console.log(opponent)
+    opponent = document.querySelector("input[name='opponent']:checked").value;
+    console.log(opponent);
 }
 
 function getFirstPlayer() {
-    const fPlayer = document.querySelector('input[name="fPlayer"]:checked').value;
-    console.log(fPlayer)
+    currentPlayer = document.querySelector('input[name="fPlayer"]:checked').value;
+    console.log(currentPlayer);
 }
-
 
 function addPieces() {
     const p1Cont = document.getElementById("p1Container")
@@ -122,38 +118,28 @@ function startGame() {
 
 function placeRandomPiece() {
     console.log(emptyCells);
-    let randomCell = Math.floor(Math.random() * 31);
-    let index = emptyCells.indexOf(randomCell);
-    let cell = document.getElementById(randomCell.toString());
+    let randomIndex = Math.floor(Math.random() * emptyCells.length);
+    let randomCellId = emptyCells[randomIndex];
+    let cell = document.getElementById(randomCellId.toString());
 
     while (cell === null || checkMove(cell) === 1) {
-        randomCell = Math.floor(Math.random() * 31);
-        index = emptyCells.indexOf(randomCell);
-        cell = document.getElementById(randomCell.toString());
+        randomIndex = Math.floor(Math.random() * emptyCells.length);
+        randomCellId = emptyCells[randomIndex];
+        cell = document.getElementById(randomCellId.toString());
     }
-    if (index !== -1) {
-        const piece = document.createElement("div")
-        piece.className = "piece"
-        piece.id = `piece${counter}`
-        emptyCells.splice(index, 1);
-        if (counter % 2 == 0) {
-            piece.style.backgroundColor = "white"
-            whitePieces.push(parseInt(cell.id))
-            let index = emptyCells.indexOf(parseInt(cell.id));
-            if (index !== -1) {
-                emptyCells.splice(index, 1);
-            }
-        } else {
-            piece.style.backgroundColor = "black"
-            blackPieces.push(parseInt(cell.id))
-            let index = emptyCells.indexOf(parseInt(cell.id));
-            if (index !== -1) {
-                emptyCells.splice(index, 1);
-            }
-        }
-        cell.appendChild(piece)
-        counter++;
-    }       
+
+    const piece = document.createElement("div");
+    piece.className = "piece";
+    piece.id = `piece${counter}`;
+    emptyCells.splice(randomIndex, 1);
+    piece.style.backgroundColor = counter % 2 === 0 ? "white" : "black";
+    if (counter % 2 === 0) {
+        whitePieces.push(randomCellId);
+    } else {
+        blackPieces.push(randomCellId);
+    }
+    cell.appendChild(piece);
+    counter++;
 }
 
 
