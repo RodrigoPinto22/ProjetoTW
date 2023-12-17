@@ -2,15 +2,48 @@ let nrows = 6;
 let ncols = 5;
 let counter = 0;
 let currentPlayer = "white";
-let opponent = 0; // 0-computador || 1-jogador
+let opponent = true; // false-computador || true-jogador
 let selectedPiece = null;
 let whitePieces = [];
 let blackPieces = [];
 let emptyCells = [];
-let gameID = 0;
+let game = 0;
+let loggedIn = false;
+let isJoined = false;
 const LINK = "http://twserver.alunos.dcc.fc.up.pt:8008/"
 
+
+// const intervalId = window.setInterval(async function(){
+//     //call your function here
+//     const data = await update()
+//     console.log(data)
+//     if (data) {
+//         populateBoard(data)
+//     }
+//
+// }, 5000);
+
+
+
+async function getBoard(){
+    const nick = document.getElementById("username").value;
+    if(isJoined){
+    const data =  await fetch(LINK + `update?nick=${nick}&game=${game}`)
+        console.log(data)
+    return data
+    }
+    return null
+}
+
+function update() {
+    const nick = document.getElementById("username").value;
+    fetch(LINK + "update" + `?nick=${nick}&game=${game}`)
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .catch((error) => console.error('Error during fetch:', error));
+}
 function register(event) {
+
     event.preventDefault();
     const nick = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -18,9 +51,15 @@ function register(event) {
         method: 'POST',
         body: JSON.stringify( { nick, password } )  
       })
-        .then((response) => response.json())
+        .then((response) => {
+            if(response.status === 200){
+                loggedIn = true
+            }
+          return response.json()
+        })
         .then((json) => console.log(json))
         .catch((error) => console.error('Error during fetch:', error));
+
 }
 
 function join() {
@@ -36,13 +75,14 @@ function join() {
         method: 'POST',
         body: JSON.stringify( { group, nick, password, size } )  
       })
-        .then((response) => response.json())
+        .then((response) =>{
+            if(response.status === 200){
+                isJoined = true
+            }
+            return response.json()})
         .then((json) => {
-            gameID = json["game"]})
+            game= json["game"]})
         .catch((error) => console.error('Error during fetch:', error));
-  
-  
-    //{"group": 99, "nick": "jpleal", "password": "another", "size": 5 }
 }
 
 function leave() {
@@ -50,24 +90,33 @@ function leave() {
     const password = document.getElementById("password").value;
     fetch(LINK + "leave",{
         method: 'POST',
-        body: JSON.stringify( { nick, password, gameID } )
+        body: JSON.stringify( { nick, password, game } )
     })
-        .then((response) => response.json())
+        .then((response) => {
+            if(response.status === 200){
+                isJoined = false
+            }
+            response.json()
+        })
         .then((json) => console.log(json))
         .catch((error) => console.error('Error during fetch:', error));
 
-
+    for (let i = 0; i < 30; i++) {
+        let targetCell = document.getElementById(i);
+        if (targetCell && targetCell.hasChildNodes()) {
+            targetCell.removeChild(targetCell.firstChild)
+        }
+    }
 }
 
 function notify(event) {
     const nick = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const game = gameID;
+    game = game;
     let move = {
         "row": parseInt(event.target.getAttribute("row")),
-        "column": parseInt(event.target.getAttribute("column")),
+        "column": parseInt(event.target.getAttribute("column"))
     }
-    console.log(move)
     fetch(LINK + "notify",{
         method: 'POST',
         body: JSON.stringify( { nick, password, game, move } )  
@@ -77,27 +126,30 @@ function notify(event) {
         .catch((error) => console.error('Error during fetch:', error));
 }
 
-
-
-
-
-
+function getRanking(group, size) {
+    fetch(LINK + "ranking", {
+        method: 'POST',
+        body: JSON.stringify({ group, size })
+    })
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(error => console.error('Error fetching ranking:', error));
+}
 
 
 
 function initialUpdate() {
-    let rowCoord = 1;
-    let colCoord = 1    ;
+    let rowCoord = 0;
+    let colCoord = 0;
     for (let i = 1; i <= nrows * ncols; i++) {
         const cell = document.getElementById(i)
-        
         cell.setAttribute("row", rowCoord)
         cell.setAttribute("column", colCoord)
+        colCoord++;
         if(i % ncols === 0) {
             rowCoord++;
             colCoord=0;
         }
-        colCoord++;
         emptyCells.push(i);
     }
 }
@@ -108,7 +160,6 @@ function changeSize() {
     board.innerHTML = "";
     try {
         const boardSize = document.getElementById("bSize").value;
-        console.log(boardSize);
         const dimensions = boardSize.split("x");
         nrows = parseInt(dimensions[0], 10);
         ncols = parseInt(dimensions[1], 10);
@@ -127,12 +178,11 @@ function changeSize() {
 
 function selectOpponent() {
     opponent = document.querySelector("input[name='opponent']:checked").value;
-    console.log(opponent);
+    console.log(opponent)
 }
 
 function getFirstPlayer() {
     currentPlayer = document.querySelector('input[name="fPlayer"]:checked').value;
-    console.log(currentPlayer);
 }
 
 function addPieces() {
@@ -170,9 +220,8 @@ function startGame() {
     join()
     function placePieces(event) {
 
-
         const cell = event.target
-        if (counter >= 10) {
+        if (counter >= 24) {
             getMessage(2);
             board.removeEventListener('click', placePieces);
             captureStage();
@@ -208,11 +257,12 @@ function startGame() {
                 emptyCells.splice(index, 1);
             }
         }
-        
         cell.appendChild(piece)
         notify(event)
         counter++;
-        if(opponent === 0) {
+
+        if(!opponent) {
+
             placeRandomPiece()
         }
     }
@@ -221,7 +271,6 @@ function startGame() {
 }
 
 function placeRandomPiece() {
-    //console.log(emptyCells);
     let randomIndex = Math.floor(Math.random() * emptyCells.length);
     let randomCellId = emptyCells[randomIndex];
     let cell = document.getElementById(randomCellId.toString());
@@ -252,29 +301,23 @@ function captureStage() {
     board.addEventListener('click', function capture(event) {
         let clickedCell = event.target;
         let isCellEmpty = !clickedCell.hasChildNodes()
-        console.log(counter)
-        //console.log(selectedPiece)
-       // console.log(clickedCell)
-        console.log(whitePieces)
-        console.log(blackPieces)
 
         if(whitePieces.length <=2) {
             getMessage(5)
-            //finish here
             return
         } else if (blackPieces.length <=2) {
             getMessage(6)
-            //finish here
             return
         }
 
         if(event.target.className === "piece" && counter % 2 === 0 && clickedCell.style.backgroundColor === "black") {
             if(checkThree(whitePieces)) {
-                let remID = parseInt(clickedCell.id)
+                let remID = parseInt(clickedCell.parentNode.id)
                 let idx = blackPieces.indexOf(remID)
-                whitePieces.splice(idx, 1)
+                blackPieces.splice(idx, 1)
                 clickedCell.remove()
                 counter++;
+                return;
             }
             else {
                 getMessage(4)
@@ -282,14 +325,22 @@ function captureStage() {
             }
         }
         else if (event.target.className === "piece" && counter % 2 !== 0 && clickedCell.style.backgroundColor === "white") {
-            let remID = parseInt(clickedCell.id)
-            let idx = whitePieces.indexOf(remID)
-            blackPieces.splice(idx, 1)
-            clickedCell.remove()
-            counter++;
+            if(checkThree(blackPieces)) {
+                let remID = parseInt(clickedCell.parentNode.id)
+                let idx = whitePieces.indexOf(remID)
+                whitePieces.splice(idx, 1)
+                clickedCell.remove()
+                counter++;
+                return;
+            }
+            else {
+                getMessage(4)
+                return;
+            }
         }
         else if (!selectedPiece && clickedCell.classList.contains("piece")) {
             selectedPiece = clickedCell;
+            return;
         }
         else if (selectedPiece && isCellEmpty && clickedCell.className !== "piece") {
             if(checkMove(clickedCell) === 1) {
@@ -297,45 +348,55 @@ function captureStage() {
                 return;
             }
             let remID = parseInt(selectedPiece.parentNode.id)
-            let idx = whitePieces.indexOf(remID)
-            console.log(idx)
-            whitePieces.splice(idx, 1)
-            whitePieces.push(parseInt(clickedCell.id))
+            if(selectedPiece.style.backgroundColor === "white") {
+                let idx = whitePieces.indexOf(remID)
+                whitePieces.splice(idx, 1)
+                whitePieces.push(parseInt(clickedCell.id))
+                let emptyIDX = emptyCells.indexOf(parseInt(clickedCell.id));
+                emptyCells.splice(emptyIDX, 1);
+
+            } else if (selectedPiece.style.backgroundColor === "black") {
+                let idx = blackPieces.indexOf(remID)
+                blackPieces.splice(idx, 1)
+                blackPieces.push(parseInt(clickedCell.id))
+            }
+           notify(event)
             clickedCell.appendChild(selectedPiece)
             selectedPiece = null;
             counter++;
         }
 
-        //clickedCell.appendChild(selectedPiece)
-        /*console.log("white: " + whitePieces)
-        console.log("black: " + blackPieces)
-        console.log(`counter = ${counter}`)
+        if(opponent === false && counter % 2 !== 0) {
+            moveRandomPiece();
+        }
 
-        if (selectedPiece && isCellEmpty && event.target.className != "piece") {
 
-            if (checkMove(clickedCell) == 1) {
-                getMessage(3)
-                return;
-            } else {
-                if (counter % 2 == 0) {
-                    whitePieces = whitePieces.filter(item => item != selectedPiece.parentNode.id);
-                    whitePieces.push(clickedCell.id)
-                } else {
-                    blackPieces =  blackPieces.filter(item => item != selectedPiece.parentNode.id);
-                    blackPieces.push(clickedCell.id)
-                }
-                clickedCell.appendChild(selectedPiece);
-                selectedPiece = null;
-                counter++;
-            }
-        } else if (!selectedPiece && clickedCell.classList.contains("piece")) {
-            selectedPiece = clickedCell;
-        } else if (event.target.className == "piece") {
-            getMessage(3);
-            return;
-        }*/
 
     });
+}
+
+function moveRandomPiece() {
+
+    const randIndex = Math.floor(Math.random() * blackPieces.length);
+    const randID = blackPieces[randIndex];
+    const remCell = document.getElementById(randID);
+
+    remCell.removeChild(remCell.firstChild);
+    blackPieces.splice(randIndex, 1);
+
+    const emptyIndex = Math.floor(Math.random() * emptyCells.length);
+    const addID = emptyCells[emptyIndex];
+    const addCell = document.getElementById(addID);
+
+    const randPiece = document.createElement("div");
+    randPiece.className = "piece";
+    randPiece.style.backgroundColor = "black";
+    addCell.appendChild(randPiece);
+
+    blackPieces.push(addID);
+    emptyCells.splice(emptyIndex, 1);
+
+    counter++;
 }
 
 function checkMove(currentCell) {
@@ -345,11 +406,9 @@ function checkMove(currentCell) {
     
     if (currentCol > 3) {
         if (counter % 2 === 0 && [cellId - 1, cellId - 2, cellId - 3].every(id => whitePieces.includes(id))) {
-            console.log("1")
             return 1;
         }
         else if (counter % 2 === 1 && [cellId - 1, cellId - 2, cellId - 3].every(id => blackPieces.includes(id))) {
-            console.log("1")
             return 1;
         }
     }
@@ -579,16 +638,9 @@ function showOptions() {
                 <option value="7x7">7x7</option> 
             </select>
         </form>`,
-        `<form class="bSize">
-            <label for="bSize">Escolher tamanho personalizado:</label> 
-            <input type="number" id="width" class="custSize">
-            <label for="">x</label>
-            <input type="number" id="height" class="custSize">
-            <button class="custButton" onclick="getCustomSize()">Confirmar</button>
-        </form>`,
-        `<form action="opponent" id="opponentForm" onchange="selectOpponent()">
-            <input type="radio" name="opponent" id="computer" value=0 checked>Computador</br>
-            <input type="radio" name="opponent" id="player" value=1>Jogador</br>
+        `<form action="opponent" id="opponentForm"">
+            <input type="radio" name="opponent" id="player" value=true checked>Jogador</br>
+            <input type="radio" name="opponent" id="computer" value=false onchange="changeOpponent()">Computador</br>
             
         </form>`,
         `<form action="fPlayer" id="fPlayerForm" onchange="getFirstPlayer()">
@@ -627,6 +679,10 @@ function showOptions() {
             overlay.remove();
         }
     });
+}
+
+function changeOpponent() {
+    opponent = !opponent;
 }
 
 window.onload = function() {
